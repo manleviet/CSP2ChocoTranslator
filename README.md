@@ -4,7 +4,7 @@ A translator which can convert CSP constraints into Choco Solver commands. This 
 
 ## Features
 
-- Translate simple constraints in the form of **<variable> <comparative op> <variable/integer>**
+- Translate simple constraints in the form of __[variable]__ __[comparative op]__ __[variable/integer]__
 - Support IntVar variables (either positive or negative)
 - Support comparative operators: =, !=, >, >=, <, <=
  
