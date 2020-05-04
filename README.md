@@ -1,2 +1,2 @@
 # CSP2ChocoTranslator
- A translator which able to convert CSP constraints into Choco Solver commands
+ A translator who can convert CSP constraints into Choco Solver commands
