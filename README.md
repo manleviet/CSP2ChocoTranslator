@@ -17,4 +17,5 @@ A translator, using the ANTLR4 runtime for parsing, enables converting CSP const
 - Try the annotator of ANTLR4 to share information among event methods
 - Catching errors
 - Extending the form of constraints
-- Support relative operators: !, &&, ||. 
+- Support relative operators: !, &&, ||
+- Support implication
