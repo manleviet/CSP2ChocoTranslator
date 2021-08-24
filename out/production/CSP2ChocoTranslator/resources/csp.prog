@@ -1,8 +1,0 @@
-constraint x > -1;
-constraint x < 1;
-constraint y == 2;
-constraint x < y;
-% constraint type == 1 -> fuel == 4;
-% requirement type == 2;
-% constraint (x1 + x2) == 4 -> x1 != 3;
-% constraint x1 == 1 && x2 == 0;
