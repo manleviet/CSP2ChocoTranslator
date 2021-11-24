@@ -19,3 +19,4 @@ A translator, using the ANTLR4 runtime for parsing, enables converting CSP const
 - Extending the form of constraints
 - Support relative operators: !, &&, ||
 - Support implication
+- Take a look at https://github.com/manleviet/choco-exppar
