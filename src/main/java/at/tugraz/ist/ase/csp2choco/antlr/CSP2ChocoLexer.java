@@ -1,24 +1,19 @@
-/*
- * CSP2ChocoTranslator
- *
- * Copyright (c) 2021.
- *
- * @author: Viet-Man Le (vietman.le@ist.tugraz.at)
- */
-
-// Generated from /Users/manleviet/Development/GitHub/MBDiagLib/src/main/java/at/tugraz/ist/ase/MBDiagLib/core/antlr4/CSP2Choco.g4 by ANTLR 4.8
+// Generated from /Users/manleviet/Development/GitHub/CSP2ChocoTranslator/src/main/java/at/tugraz/ist/ase/csp2choco/antlr/CSP2Choco.g4 by ANTLR 4.9.2
 package at.tugraz.ist.ase.csp2choco.antlr;
 
 
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Lexer;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.Token;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.misc.*;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class CSP2ChocoLexer extends Lexer {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =

@@ -6,19 +6,20 @@
  * @author: Viet-Man Le (vietman.le@ist.tugraz.at)
  */
 
-// Generated from /Users/manleviet/Development/GitHub/MBDiagLib/src/main/java/at/tugraz/ist/ase/MBDiagLib/core/antlr4/CSP2Choco.g4 by ANTLR 4.8
+// Generated from /Users/manleviet/Development/GitHub/CSP2ChocoTranslator/src/main/java/at/tugraz/ist/ase/csp2choco/antlr/CSP2Choco.g4 by ANTLR 4.9.2
 package at.tugraz.ist.ase.csp2choco.antlr;
-
-import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
+import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
-
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class CSP2ChocoParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.8", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -123,6 +124,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitModel(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitModel(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ModelContext model() throws RecognitionException {
@@ -176,6 +182,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitStatement_list(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitStatement_list(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final Statement_listContext statement_list() throws RecognitionException {
@@ -221,6 +232,11 @@ public class CSP2ChocoParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitStatement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitStatement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -277,6 +293,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitConstraint(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitConstraint(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ConstraintContext constraint() throws RecognitionException {
@@ -318,6 +339,11 @@ public class CSP2ChocoParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitRequirement(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitRequirement(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 
@@ -368,6 +394,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitNot(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitNot(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class ParensContext extends ExprContext {
 		public TerminalNode LP() { return getToken(CSP2ChocoParser.LP, 0); }
@@ -383,6 +414,11 @@ public class CSP2ChocoParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitParens(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitParens(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class OrContext extends ExprContext {
@@ -402,6 +438,11 @@ public class CSP2ChocoParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitOr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitOr(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class MulDivContext extends ExprContext {
@@ -423,6 +464,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitMulDiv(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitMulDiv(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class AddSubContext extends ExprContext {
 		public Token op;
@@ -443,6 +489,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitAddSub(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitAddSub(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class AndContext extends ExprContext {
 		public Token op;
@@ -462,6 +513,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitAnd(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitAnd(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class IdContext extends ExprContext {
 		public TerminalNode IDENTIFIER() { return getToken(CSP2ChocoParser.IDENTIFIER, 0); }
@@ -473,6 +529,11 @@ public class CSP2ChocoParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitId(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitId(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ImplicationContext extends ExprContext {
@@ -493,6 +554,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitImplication(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitImplication(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class MinusContext extends ExprContext {
 		public TerminalNode SUB() { return getToken(CSP2ChocoParser.SUB, 0); }
@@ -508,6 +574,11 @@ public class CSP2ChocoParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitMinus(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitMinus(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 	public static class IntContext extends ExprContext {
 		public TerminalNode INT_CONST() { return getToken(CSP2ChocoParser.INT_CONST, 0); }
@@ -519,6 +590,11 @@ public class CSP2ChocoParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitInt(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitInt(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 	public static class ComparationContext extends ExprContext {
@@ -543,6 +619,11 @@ public class CSP2ChocoParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof CSP2ChocoListener ) ((CSP2ChocoListener)listener).exitComparation(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof CSP2ChocoVisitor ) return ((CSP2ChocoVisitor<? extends T>)visitor).visitComparation(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

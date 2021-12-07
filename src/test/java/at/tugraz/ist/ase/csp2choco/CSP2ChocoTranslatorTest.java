@@ -8,25 +8,26 @@
 
 package at.tugraz.ist.ase.csp2choco;
 
-import at.tugraz.ist.ase.common.Utils;
+import at.tugraz.ist.ase.common.IOUtils;
 import org.chocosolver.solver.Model;
 import org.chocosolver.solver.constraints.Constraint;
 import org.chocosolver.solver.variables.IntVar;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CSP2ChocoTranslatorTest {
 
-    Model model;
+    static Model model;
 
-    private Model createModel() {
+    static Model createModel() {
         // create a model
         Model model = new Model("Test Model");
         // Decision variables
@@ -41,44 +42,34 @@ public class CSP2ChocoTranslatorTest {
         ac.forEach(System.out::println);
     }
 
-    @BeforeMethod
-    public void setUp() {
-        ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = null;
+    @BeforeAll
+    static void setUp() {
         try {
-            inputStream = Utils.getInputStream(classLoader, "csp.mzn");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
+            ClassLoader classLoader = CSP2ChocoTranslatorTest.class.getClassLoader();
+            InputStream inputStream = IOUtils.getInputStream(classLoader, "csp.mzn");
 
-        // create a model with variables
-        model = createModel();
+            // create a model with variables
+            model = createModel();
 
-        // create listener
-        CSP2ChocoTranslator translator = new CSP2ChocoTranslator(model);
+            // create listener
+            CSP2ChocoTranslator translator = new CSP2ChocoTranslator(model);
 
-        try {
             translator.translate(inputStream);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    @AfterMethod
-    public void tearDown() {
-    }
-
     @Test
     public void testTranslator() {
-        printConstraints(model);
+//        printConstraints(model);
 
-        assert model.getNbCstrs() == 3;
-        assert model.getCstrs()[0].toString().equals("ARITHM ([x >= 2])");
-        assert model.getCstrs()[1].toString().equals("ARITHM ([x <= 0])");
-        assert model.getCstrs()[2].toString().equals("ARITHM ([x =/= 1])");
-
-        assert model.getNbVars() == 2;
-        assert model.getVar(0).getName().equals("x");
-        assert model.getVar(1).getName().equals("y");
+        assertAll(() -> assertEquals(3, model.getNbCstrs()),
+                () -> assertEquals("ARITHM ([x >= 2])", model.getCstrs()[0].toString()),
+                () -> assertEquals("ARITHM ([x <= 0])", model.getCstrs()[1].toString()),
+                () -> assertEquals("ARITHM ([x =/= 1])", model.getCstrs()[2].toString()),
+                () -> assertEquals(2, model.getNbVars()),
+                () -> assertEquals("x", model.getVar(0).getName()),
+                () -> assertEquals("y", model.getVar(1).getName()));
     }
 }

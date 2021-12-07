@@ -8,10 +8,13 @@
 
 package at.tugraz.ist.ase.csp2choco;
 
+import at.tugraz.ist.ase.common.LoggerUtils;
 import at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoBaseListener;
 import at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoLexer;
 import at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser;
 import lombok.Getter;
+import lombok.NonNull;
+import lombok.extern.slf4j.Slf4j;
 import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -21,20 +24,23 @@ import org.chocosolver.solver.variables.IntVar;
 import org.chocosolver.solver.variables.Variable;
 import org.javatuples.Pair;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Slf4j
 public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
 
-    @Getter
+    @Getter @NonNull
     private Model model;
 
-    public CSP2ChocoTranslator(Model model) {
+    public CSP2ChocoTranslator(@NonNull Model model) {
         this.model = model;
     }
 
-    public void translate(InputStream inputFile) throws IOException {
+    public void translate(@NonNull InputStream inputFile) throws IOException {
+
+        log.debug("Translating CSP to Choco");
+        LoggerUtils.indent();
 
         CharStream input = CharStreams.fromStream(inputFile);
         CSP2ChocoLexer lexer = new CSP2ChocoLexer(input);
@@ -46,10 +52,15 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
         ParseTreeWalker walker = new ParseTreeWalker();
         // feed to walker
         walker.walk(this, tree);        // walk parse tree
+
+        LoggerUtils.outdent();
+        log.debug("Translating CSP to Choco DONE");
     }
 
     public void exitConstraint(CSP2ChocoParser.ConstraintContext ctx) {
-        //System.out.println(ctx.expr().getText());
+        String key = ctx.expr().getText();
+        log.trace("{}Parsing the constraint '{}' >>>", LoggerUtils.tab, key.toUpperCase());
+        LoggerUtils.indent();
 
         ParserRuleContext leftContext = (ParserRuleContext) ctx.expr().getChild(0);
         TerminalNode opNode = (TerminalNode) ctx.expr().getChild(1);
@@ -71,6 +82,9 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
         } else {
             model.arithm(leftVar, op, rightVar.getValue1()).post();
         }
+
+        LoggerUtils.outdent();
+        log.trace("{}<<< The domain '{}' parsed", LoggerUtils.tab, key.toUpperCase());
     }
 
     private String opNodeTranslate(TerminalNode node) {
@@ -85,8 +99,7 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
 
     private IntVar leftContextTranslate(Model model, ParserRuleContext leftContext) {
         //System.out.println(leftContext.getRuleIndex());
-        if (leftContext instanceof CSP2ChocoParser.IdContext) {
-            CSP2ChocoParser.IdContext id = (CSP2ChocoParser.IdContext)leftContext;
+        if (leftContext instanceof CSP2ChocoParser.IdContext id) {
 
             return findVariable(model, id.getText());
         } else {
@@ -96,12 +109,10 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
     }
 
     private Pair<IntVar, Integer> rightContextTranslate(Model model, ParserRuleContext rightContext) {
-        if (rightContext instanceof CSP2ChocoParser.IdContext) {
-            CSP2ChocoParser.IdContext id = (CSP2ChocoParser.IdContext)rightContext;
+        if (rightContext instanceof CSP2ChocoParser.IdContext id) {
 
             return Pair.with(findVariable(model, id.getText()), Integer.MIN_VALUE);
-        } if (rightContext instanceof CSP2ChocoParser.IntContext) {
-            CSP2ChocoParser.IntContext valueContext = (CSP2ChocoParser.IntContext)rightContext;
+        } if (rightContext instanceof CSP2ChocoParser.IntContext valueContext) {
 
             return Pair.with(null, Integer.parseInt(valueContext.getText()));
         } else {
@@ -110,9 +121,9 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
         return null;
     }
 
+    // TODO: uses the method from the CommonPackage
     private IntVar findVariable(Model model, String name) {
         Variable var = model.getVar(0);
-        // TODO: tim cach khac tim nhanh hon
         for (Variable v : model.getVars()) {
             if (v.getName().equals(name)) {
                 var = v;
