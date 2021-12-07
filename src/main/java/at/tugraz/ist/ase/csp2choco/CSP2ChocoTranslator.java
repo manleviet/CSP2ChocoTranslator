@@ -31,15 +31,14 @@ import java.io.InputStream;
 public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
 
     @Getter @NonNull
-    private Model model;
+    private final Model model;
 
     public CSP2ChocoTranslator(@NonNull Model model) {
         this.model = model;
     }
 
     public void translate(@NonNull InputStream inputFile) throws IOException {
-
-        log.debug("Translating CSP to Choco");
+        log.debug("{}Translating CSP to Choco >>>", LoggerUtils.tab);
         LoggerUtils.indent();
 
         CharStream input = CharStreams.fromStream(inputFile);
@@ -54,7 +53,7 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
         walker.walk(this, tree);        // walk parse tree
 
         LoggerUtils.outdent();
-        log.debug("Translating CSP to Choco DONE");
+        log.debug("{}<<< Translating CSP to Choco DONE", LoggerUtils.tab);
     }
 
     public void exitConstraint(CSP2ChocoParser.ConstraintContext ctx) {
