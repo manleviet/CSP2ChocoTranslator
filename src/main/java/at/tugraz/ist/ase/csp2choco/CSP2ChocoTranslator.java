@@ -20,12 +20,15 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.chocosolver.solver.Model;
+import org.chocosolver.solver.constraints.Constraint;
 import org.chocosolver.solver.variables.IntVar;
-import org.chocosolver.solver.variables.Variable;
 import org.javatuples.Pair;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import static at.tugraz.ist.ase.common.ChocoSolverUtils.getVariable;
+import static com.google.common.base.Preconditions.checkArgument;
 
 @Slf4j
 public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
@@ -38,7 +41,7 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
     }
 
     public void translate(@NonNull InputStream inputFile) throws IOException {
-        log.debug("{}Translating CSP to Choco >>>", LoggerUtils.tab);
+        log.debug("{}Translating CSP to Choco model >>>", LoggerUtils.tab);
         LoggerUtils.indent();
 
         CharStream input = CharStreams.fromStream(inputFile);
@@ -53,12 +56,12 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
         walker.walk(this, tree);        // walk parse tree
 
         LoggerUtils.outdent();
-        log.debug("{}<<< Translating CSP to Choco DONE", LoggerUtils.tab);
+        log.debug("{}<<< Translated CSP to Choco model", LoggerUtils.tab);
     }
 
     public void exitConstraint(CSP2ChocoParser.ConstraintContext ctx) {
         String key = ctx.expr().getText();
-        log.trace("{}Parsing the constraint '{}' >>>", LoggerUtils.tab, key.toUpperCase());
+        log.trace("{}Parsing the constraint [cstr={}] >>>", LoggerUtils.tab, key);
         LoggerUtils.indent();
 
         ParserRuleContext leftContext = (ParserRuleContext) ctx.expr().getChild(0);
@@ -66,24 +69,19 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
         ParserRuleContext rightContext = (ParserRuleContext) ctx.expr().getChild(2);
 
         IntVar leftVar = leftContextTranslate(model, leftContext);
-
-        // if null, then error
-        if (leftVar == null) return;
-
         String op = opNodeTranslate(opNode);
-
         Pair<IntVar, Integer> rightVar = rightContextTranslate(model, rightContext);
 
-        if (rightVar == null) return;
-
+        Constraint constraint;
         if (rightVar.getValue0() != null) {
-            model.arithm(leftVar, op, rightVar.getValue0()).post();
+            constraint = model.arithm(leftVar, op, rightVar.getValue0());
         } else {
-            model.arithm(leftVar, op, rightVar.getValue1()).post();
+            constraint = model.arithm(leftVar, op, rightVar.getValue1());
         }
+        constraint.post();
 
         LoggerUtils.outdent();
-        log.trace("{}<<< The domain '{}' parsed", LoggerUtils.tab, key.toUpperCase());
+        log.debug("{}<<< Parsed the constraint [cstr={}, choco_cstr={}]", LoggerUtils.tab, key, constraint);
     }
 
     private String opNodeTranslate(TerminalNode node) {
@@ -92,46 +90,29 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
 
         if (op.equals("==")) op = "=";
 
-        //System.out.println(op);
         return op;
     }
 
     private IntVar leftContextTranslate(Model model, ParserRuleContext leftContext) {
-        //System.out.println(leftContext.getRuleIndex());
-        if (leftContext instanceof CSP2ChocoParser.IdContext id) {
+        checkArgument(leftContext instanceof CSP2ChocoParser.IdContext, "{}Unsupported context [context={}]", LoggerUtils.tab, leftContext);
 
-            return findVariable(model, id.getText());
-        } else {
-            System.out.println("Error: must a identifier in the left side.");
-        }
-        return null;
+        CSP2ChocoParser.IdContext id = (CSP2ChocoParser.IdContext) leftContext;
+        return (IntVar) getVariable(model, id.getText());
     }
 
     private Pair<IntVar, Integer> rightContextTranslate(Model model, ParserRuleContext rightContext) {
+        checkArgument(rightContext instanceof CSP2ChocoParser.IntContext || rightContext instanceof CSP2ChocoParser.IdContext,
+                "{}Unsupported context [context={}]", LoggerUtils.tab, rightContext);
+
         if (rightContext instanceof CSP2ChocoParser.IdContext id) {
-
-            return Pair.with(findVariable(model, id.getText()), Integer.MIN_VALUE);
-        } if (rightContext instanceof CSP2ChocoParser.IntContext valueContext) {
-
-            return Pair.with(null, Integer.parseInt(valueContext.getText()));
+            return Pair.with((IntVar) getVariable(model, id.getText()), Integer.MIN_VALUE);
         } else {
-            System.out.println("Error: must a identifier or an integer in the right side");
+            CSP2ChocoParser.IntContext valueContext = (CSP2ChocoParser.IntContext) rightContext;
+            return Pair.with(null, Integer.parseInt(valueContext.getText()));
         }
-        return null;
     }
 
-    // TODO: uses the method from the CommonPackage
-    private IntVar findVariable(Model model, String name) {
-        Variable var = model.getVar(0);
-        for (Variable v : model.getVars()) {
-            if (v.getName().equals(name)) {
-                var = v;
-                break;
-            }
-        }
-        return (IntVar)var;
-    }
-
+    // Utility functions
     public static void loadConstraints(InputStream inputFile, Model model) throws IOException {
         CSP2ChocoTranslator translator = new CSP2ChocoTranslator(model);
 
