@@ -10,14 +10,13 @@ package at.tugraz.ist.ase.csp2choco;
 
 import at.tugraz.ist.ase.common.IOUtils;
 import org.chocosolver.solver.Model;
-import org.chocosolver.solver.variables.IntVar;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-import static at.tugraz.ist.ase.common.ChocoSolverUtils.printConstraints;
+import static at.tugraz.ist.ase.common.ChocoSolverUtils.printConstraintsWithNoFormat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -53,7 +52,7 @@ public class CSP2ChocoTranslatorTest {
 
     @Test
     public void testTranslator() {
-        printConstraints(model);
+        printConstraintsWithNoFormat(model);
 
         assertAll(() -> assertEquals(3, model.getNbCstrs()),
                 () -> assertEquals("ARITHM ([x >= 2])", model.getCstrs()[0].toString()),
