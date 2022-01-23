@@ -1,7 +1,7 @@
 /*
  * CSP2ChocoTranslator
  *
- * Copyright (c) 2021.
+ * Copyright (c) 2021-2022
  *
  * @author: Viet-Man Le (vietman.le@ist.tugraz.at)
  */
@@ -33,15 +33,22 @@ import static com.google.common.base.Preconditions.checkArgument;
 @Slf4j
 public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
 
-    @Getter @NonNull
+    @Getter
     private final Model model;
 
     public CSP2ChocoTranslator(@NonNull Model model) {
         this.model = model;
     }
 
+    // Utility functions
+    public static void loadConstraints(@NonNull InputStream inputFile, @NonNull Model model) throws IOException {
+        CSP2ChocoTranslator translator = new CSP2ChocoTranslator(model);
+
+        translator.translate(inputFile); // translate the input file into a Model with constraints
+    }
+
     public void translate(@NonNull InputStream inputFile) throws IOException {
-        log.debug("{}Translating CSP to Choco model >>>", LoggerUtils.tab);
+        log.trace("{}Translating CSP to Choco model >>>", LoggerUtils.tab);
         LoggerUtils.indent();
 
         CharStream input = CharStreams.fromStream(inputFile);
@@ -110,12 +117,5 @@ public class CSP2ChocoTranslator extends CSP2ChocoBaseListener {
             CSP2ChocoParser.IntContext valueContext = (CSP2ChocoParser.IntContext) rightContext;
             return Pair.with(null, Integer.parseInt(valueContext.getText()));
         }
-    }
-
-    // Utility functions
-    public static void loadConstraints(InputStream inputFile, Model model) throws IOException {
-        CSP2ChocoTranslator translator = new CSP2ChocoTranslator(model);
-
-        translator.translate(inputFile); // translate the input file into a Model with constraints
     }
 }

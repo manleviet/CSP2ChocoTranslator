@@ -1,7 +1,7 @@
 /*
  * CSP2ChocoTranslator
  *
- * Copyright (c) 2021.
+ * Copyright (c) 2021-2022
  *
  * @author: Viet-Man Le (vietman.le@ist.tugraz.at)
  */
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.io.InputStream;
 
-import static at.tugraz.ist.ase.common.ChocoSolverUtils.printConstraintsWithNoFormat;
+import static at.tugraz.ist.ase.common.ChocoSolverUtils.printConstraintsWithoutFormat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -52,7 +52,7 @@ public class CSP2ChocoTranslatorTest {
 
     @Test
     public void testTranslator() {
-        printConstraintsWithNoFormat(model);
+        printConstraintsWithoutFormat(model);
 
         assertAll(() -> assertEquals(3, model.getNbCstrs()),
                 () -> assertEquals("ARITHM ([x >= 2])", model.getCstrs()[0].toString()),

@@ -1,3 +1,11 @@
+/*
+ * CSP2ChocoTranslator
+ *
+ * Copyright (c) 2022
+ *
+ * @author: Viet-Man Le (vietman.le@ist.tugraz.at)
+ */
+
 // Generated from /Users/manleviet/Development/GitHub/CSP2ChocoTranslator/src/main/java/at/tugraz/ist/ase/csp2choco/antlr/CSP2Choco.g4 by ANTLR 4.9.2
 package at.tugraz.ist.ase.csp2choco.antlr;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
