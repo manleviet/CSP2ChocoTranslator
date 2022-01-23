@@ -1,12 +1,12 @@
 /*
  * CSP2ChocoTranslator
  *
- * Copyright (c) 2021.
+ * Copyright (c) 2022
  *
  * @author: Viet-Man Le (vietman.le@ist.tugraz.at)
  */
 
-// Generated from /Users/manleviet/Development/GitHub/MBDiagLib/src/main/java/at/tugraz/ist/ase/MBDiagLib/core/antlr4/CSP2Choco.g4 by ANTLR 4.8
+// Generated from /Users/manleviet/Development/GitHub/CSP2ChocoTranslator/src/main/java/at/tugraz/ist/ase/csp2choco/antlr/CSP2Choco.g4 by ANTLR 4.9.2
 package at.tugraz.ist.ase.csp2choco.antlr;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -24,193 +24,193 @@ public class CSP2ChocoBaseListener implements CSP2ChocoListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterModel(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ModelContext ctx) { }
+	@Override public void enterModel(CSP2ChocoParser.ModelContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitModel(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ModelContext ctx) { }
+	@Override public void exitModel(CSP2ChocoParser.ModelContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement_list(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.Statement_listContext ctx) { }
+	@Override public void enterStatement_list(CSP2ChocoParser.Statement_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement_list(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.Statement_listContext ctx) { }
+	@Override public void exitStatement_list(CSP2ChocoParser.Statement_listContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterStatement(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.StatementContext ctx) { }
+	@Override public void enterStatement(CSP2ChocoParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitStatement(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.StatementContext ctx) { }
+	@Override public void exitStatement(CSP2ChocoParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConstraint(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ConstraintContext ctx) { }
+	@Override public void enterConstraint(CSP2ChocoParser.ConstraintContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConstraint(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ConstraintContext ctx) { }
+	@Override public void exitConstraint(CSP2ChocoParser.ConstraintContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterRequirement(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.RequirementContext ctx) { }
+	@Override public void enterRequirement(CSP2ChocoParser.RequirementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitRequirement(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.RequirementContext ctx) { }
+	@Override public void exitRequirement(CSP2ChocoParser.RequirementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNot(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.NotContext ctx) { }
+	@Override public void enterNot(CSP2ChocoParser.NotContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitNot(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.NotContext ctx) { }
+	@Override public void exitNot(CSP2ChocoParser.NotContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParens(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ParensContext ctx) { }
+	@Override public void enterParens(CSP2ChocoParser.ParensContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParens(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ParensContext ctx) { }
+	@Override public void exitParens(CSP2ChocoParser.ParensContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterOr(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.OrContext ctx) { }
+	@Override public void enterOr(CSP2ChocoParser.OrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitOr(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.OrContext ctx) { }
+	@Override public void exitOr(CSP2ChocoParser.OrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMulDiv(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.MulDivContext ctx) { }
+	@Override public void enterMulDiv(CSP2ChocoParser.MulDivContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMulDiv(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.MulDivContext ctx) { }
+	@Override public void exitMulDiv(CSP2ChocoParser.MulDivContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAddSub(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.AddSubContext ctx) { }
+	@Override public void enterAddSub(CSP2ChocoParser.AddSubContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAddSub(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.AddSubContext ctx) { }
+	@Override public void exitAddSub(CSP2ChocoParser.AddSubContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterAnd(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.AndContext ctx) { }
+	@Override public void enterAnd(CSP2ChocoParser.AndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitAnd(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.AndContext ctx) { }
+	@Override public void exitAnd(CSP2ChocoParser.AndContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterId(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.IdContext ctx) { }
+	@Override public void enterId(CSP2ChocoParser.IdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitId(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.IdContext ctx) { }
+	@Override public void exitId(CSP2ChocoParser.IdContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterImplication(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ImplicationContext ctx) { }
+	@Override public void enterImplication(CSP2ChocoParser.ImplicationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitImplication(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ImplicationContext ctx) { }
+	@Override public void exitImplication(CSP2ChocoParser.ImplicationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMinus(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.MinusContext ctx) { }
+	@Override public void enterMinus(CSP2ChocoParser.MinusContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitMinus(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.MinusContext ctx) { }
+	@Override public void exitMinus(CSP2ChocoParser.MinusContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInt(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.IntContext ctx) { }
+	@Override public void enterInt(CSP2ChocoParser.IntContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitInt(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.IntContext ctx) { }
+	@Override public void exitInt(CSP2ChocoParser.IntContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterComparation(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ComparationContext ctx) { }
+	@Override public void enterComparation(CSP2ChocoParser.ComparationContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitComparation(at.tugraz.ist.ase.csp2choco.antlr.CSP2ChocoParser.ComparationContext ctx) { }
+	@Override public void exitComparation(CSP2ChocoParser.ComparationContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
