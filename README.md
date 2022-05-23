@@ -1,5 +1,7 @@
 # CSP2ChocoTranslator
 
+*Migrated to [https://github.com/manleviet/CA-CDR-V2](https://github.com/manleviet/CA-CDR-V2)*
+
 A translator, using the ANTLR4 runtime for parsing, enables converting CSP constraints into Choco Solver commands.
 
 ## Features
